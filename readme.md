@@ -10,6 +10,8 @@
 
 > `@tanstack/react-query` Official Docs: [https://tanstack.com/query/latest/docs/framework/react/quick-start](https://tanstack.com/query/latest/docs/framework/react/quick-start)
 
+<br>
+
 ## Installation
 
 ```

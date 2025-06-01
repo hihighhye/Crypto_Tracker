@@ -212,7 +212,7 @@ function Coin() {
                         <Tab isActive={chartMatch !== null}><Link to="chart">Chart</Link></Tab>
                         <Tab isActive={priceMatch !== null}><Link to="price">Price</Link></Tab>
                     </Tabs>
-                    <Outlet />
+                    <Outlet context={{coinId: coinId}} />
                     </>
                 )
             }
