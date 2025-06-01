@@ -90,7 +90,7 @@ function Coins() {
                                 <Img 
                                     src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`} 
                                 />
-                                {coin.name} &rarr
+                                {coin.name} &rarr;
                             </Link>
                         </Coin>
                     ))}

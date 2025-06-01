@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 
@@ -27,17 +27,49 @@ const Loader = styled.span`
     display: block;
 `;
 
+const LinkMain = styled.span`
+    a {
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        font-size: 24px;
+    }
+    &:hover {
+        a {
+            color: ${(props) => props.theme.accentColor};
+        }
+    }
+
+`;
+
 
 function Coin() {
     const {coinId} = useParams();
     const [loading, setLoading] = useState(true);
     const {state} = useLocation();
+    const [info, setInfo] = useState({});
+    const [priceInfo, setPriceInfo] = useState({});
+    useEffect(() => {
+        (async () => {
+            const infoData = await (
+                await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)
+            ).json();
+            const priceData = await (
+                await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
+            ).json();
+        })();
+    }, []);
     return (
         <Container>
             <Header>
-                <Title>{state?.name || "Loading..."}</Title>    
+                <Title>{state?.name || "~ Wrong Acess ~"}</Title>    
             </Header>
-            {loading ? (<Loader>Loading...</Loader>) : null}
+            {state 
+            ? (loading 
+                ? <Loader>Loading...</Loader> 
+                : null
+            ) 
+            : <LinkMain><Link to={"/"}>Go to Main &rarr;</Link></LinkMain>}
         </Container>
     );
 }
