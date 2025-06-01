@@ -1,0 +1,25 @@
+# Crypto Tracker
+
+## Version
+
+- react@19.1.0
+- styled-components@6.1.18
+- react-router-dom@7.6.1
+- @tanstack/react-query@5.79.0
+
+<br>
+
+> `@tanstack/react-query` Official Docs: [https://tanstack.com/query/latest/docs/framework/react/quick-start](https://tanstack.com/query/latest/docs/framework/react/quick-start)
+
+## Installation
+
+```
+npx create-react-app [App Name] --template typescript
+
+npm i --save-dev @types/styled-components
+npm i styled-components
+
+npm i react-router-dom
+npm i @tanstack/react-query
+
+```
