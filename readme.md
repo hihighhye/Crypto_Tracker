@@ -6,6 +6,7 @@
 - styled-components@6.1.18
 - react-router-dom@7.6.1
 - @tanstack/react-query@5.79.0
+- npm i @tanstack/react-query-devtools
 
 <br>
 
