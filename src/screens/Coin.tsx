@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Outlet, useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 
 const Container = styled.div`
     padding: 0px 20px;
-    max-width: 470px;
+    max-width: 600px;
     margin: 0 auto;
 `;
 
@@ -27,19 +27,36 @@ const Loader = styled.span`
     display: block;
 `;
 
-const LinkMain = styled.span`
-    a {
-        display: flex;
-        align-items: center;
-        padding: 20px;
-        font-size: 24px;
-    }
-    &:hover {
-        a {
-            color: ${(props) => props.theme.accentColor};
-        }
-    }
+const Overview = styled.div`
+    background-color: black;
+    color: ${props => props.theme.textColor};
+    padding: 20px 25px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+`;
 
+const OverviewItem = styled.div`
+    background-color: inherit;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    span:first-child {
+        font-size: 12px;
+        padding-bottom: 10px;
+    }
+    span:nth-child(2) {
+        font-size: 26px;
+    }
+`;
+
+const Description = styled.div`
+    margin: 25px 0px;
+    line-height: 1.2em;
+    font-size: 16px;
 `;
 
 interface InfoData {
@@ -114,19 +131,47 @@ function Coin() {
             ).json();
             setInfo(infoData);
             setPriceInfo(priceData);
+            setLoading(false);
         })();
-    }, []);
+    }, [coinId]);
     return (
         <Container>
             <Header>
-                <Title>{state?.name || "~ Wrong Acess ~"}</Title>    
+                <Title>{state?.name ? state.name : loading ? "Loading..." : info?.name}</Title>    
             </Header>
-            {state 
-            ? (loading 
+            {loading 
                 ? <Loader>Loading...</Loader> 
-                : null
-            ) 
-            : <LinkMain><Link to={"/"}>Go to Main &rarr;</Link></LinkMain>}
+                : (
+                    <>
+                    <Overview>
+                        <OverviewItem>
+                            <span>Rank:</span>
+                            <span>{info?.rank}</span>
+                        </OverviewItem>
+                        <OverviewItem>
+                            <span>SYMBOL:</span>
+                            <span>${info?.symbol}</span>
+                        </OverviewItem>
+                        <OverviewItem>
+                            <span>OPEN SOURCE:</span>
+                            <span>{info?.open_source ? "Yes" : "No"}</span>
+                        </OverviewItem>
+                    </Overview>
+                    <Description>{info?.description}</Description>
+                    <Overview>
+                        <OverviewItem>
+                            <span>TOTAL SUPPLY:</span>
+                            <span>${priceInfo?.total_supply.toLocaleString()}</span>
+                        </OverviewItem>
+                        <OverviewItem>
+                            <span>MAX SUPPLY:</span>
+                            <span>${priceInfo?.max_supply.toLocaleString()}</span>
+                        </OverviewItem>
+                    </Overview>
+                    <Outlet />
+                    </>
+                )
+            }
         </Container>
     );
 }
