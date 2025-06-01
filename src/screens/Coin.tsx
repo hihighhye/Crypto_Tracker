@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation, useParams, useMatch, } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
+import { Helmet } from "react-helmet";
 
 
 const Container = styled.div`
@@ -151,7 +152,8 @@ function Coin() {
     const {isLoading: tickersLoading, data: tickersData} = useQuery<PriceData>(
         {
             queryKey: ["tickers", coinId], 
-            queryFn: () => fetchCoinTickers(coinId ? coinId : "")
+            queryFn: () => fetchCoinTickers(coinId ? coinId : ""),
+            refetchInterval: 5000,
         }
     );
 
@@ -176,6 +178,11 @@ function Coin() {
    const loading = infoLoading || tickersLoading;
     return (
         <Container>
+            <Helmet>
+                <title>
+                    {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
+                </title>
+            </Helmet>
             <Header>
                 <Title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</Title>    
             </Header>
@@ -193,8 +200,13 @@ function Coin() {
                             <span>${infoData?.symbol}</span>
                         </OverviewItem>
                         <OverviewItem>
-                            <span>OPEN SOURCE:</span>
-                            <span>{infoData?.open_source ? "Yes" : "No"}</span>
+                            <span>PRICE:</span>
+                            <span>{tickersData ? 
+                                    `$${parseFloat(tickersData.quotes.USD.price)
+                                    .toLocaleString("en-US", {
+                                        minimumFractionDigits: 3,
+                                        maximumFractionDigits: 3
+                                    })}` : ""}</span>
                         </OverviewItem>
                     </Overview>
                     <Description>{infoData?.description}</Description>

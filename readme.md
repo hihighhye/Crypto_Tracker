@@ -8,6 +8,7 @@
 - @tanstack/react-query@5.79.0
 - @tanstack/react-query-devtools@5.79.0
 - apexcharts@4.7.0
+- react-helmet@6.1.0
 
 > `@tanstack/react-query` Official Docs: [https://tanstack.com/query/latest/docs/framework/react/quick-start](https://tanstack.com/query/latest/docs/framework/react/quick-start)
 
@@ -24,6 +25,9 @@ npm i styled-components
 npm i react-router-dom
 npm i @tanstack/react-query
 npm install --save react-apexcharts apexcharts
+
+npm i react-helmet
+npm i --save-dev @types/react-helmet
 
 ```
 

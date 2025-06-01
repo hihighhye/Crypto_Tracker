@@ -20,7 +20,13 @@ interface IHistorical {
 
 function CryptoChart() {
     const {coinId} = useOutletContext<IChartContext>();
-    const {isLoading, data} = useQuery<IHistorical[]>({queryKey: ["ohlcv", "coinId"], queryFn: () => fetchCoinHistory(coinId)});
+    const {isLoading, data} = useQuery<IHistorical[]>(
+        {
+            queryKey: ["ohlcv", "coinId"], 
+            queryFn: () => fetchCoinHistory(coinId),
+            refetchInterval: 10000,
+        }
+    );
     console.log(data)
     return (
         <div>
