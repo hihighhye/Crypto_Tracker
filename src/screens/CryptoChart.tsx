@@ -60,7 +60,25 @@ function CryptoChart() {
                             axisBorder: { show: false },
                             axisTicks: { show: false },
                             labels: { show: false },
+                            type: "datetime",
+                            categories: data?.map((price) => new Date(price.time_close * 1000).toDateString()),
                         },
+                        fill: {
+                            type: "gradient",
+                            gradient: {
+                                gradientToColors: ["blue"],
+                                stops: [0, 100] 
+                            },
+                        },
+                        colors: ["red"],
+                        tooltip: {
+                            y: {
+                                formatter: (value) => `$${value.toLocaleString('en-US', {
+                                    minimumFractionDigits: 3,
+                                    maximumFractionDigits: 3
+                                })}`
+                            }
+                        }
                     }}
                 />
             )}

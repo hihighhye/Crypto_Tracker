@@ -221,7 +221,3 @@ function Coin() {
 }
 
 export default Coin;
-
-function useRouteNatch(arg0: string) {
-    throw new Error("Function not implemented.");
-}
