@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Outlet, useLocation, useParams } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams, useMatch, } from "react-router-dom";
 import styled from "styled-components";
 
 
@@ -44,12 +44,10 @@ const OverviewItem = styled.div`
     display: flex;
     flex-direction: column;
     text-align: center;
+    font-size: 26px;
     span:first-child {
         font-size: 12px;
         padding-bottom: 10px;
-    }
-    span:nth-child(2) {
-        font-size: 26px;
     }
 `;
 
@@ -57,6 +55,27 @@ const Description = styled.div`
     margin: 25px 0px;
     line-height: 1.2em;
     font-size: 16px;
+`;
+
+const Tabs = styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 25px 0px;
+    gap: 10px;
+`;
+
+const Tab = styled.span<{isActive: boolean}>`
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+    background-color: black;
+    padding: 7px 0px;
+    border-radius: 10px;
+    color: ${props => props.isActive ? props.theme.accentColor : props.theme.textColor};
+    a {
+        display: block;
+    }
 `;
 
 interface InfoData {
@@ -121,6 +140,8 @@ function Coin() {
     const {state} = useLocation();
     const [info, setInfo] = useState<InfoData>();
     const [priceInfo, setPriceInfo] = useState<PriceData>();
+    const priceMatch = useMatch("/:coinId/price");
+    const chartMatch = useMatch("/:coinId/chart");
     useEffect(() => {
         (async () => {
             const infoData = await (
@@ -168,6 +189,10 @@ function Coin() {
                             <span>${priceInfo?.max_supply.toLocaleString()}</span>
                         </OverviewItem>
                     </Overview>
+                    <Tabs>
+                        <Tab isActive={chartMatch !== null}><Link to="chart">Chart</Link></Tab>
+                        <Tab isActive={priceMatch !== null}><Link to="price">Price</Link></Tab>
+                    </Tabs>
                     <Outlet />
                     </>
                 )
@@ -177,3 +202,7 @@ function Coin() {
 }
 
 export default Coin;
+
+function useRouteNatch(arg0: string) {
+    throw new Error("Function not implemented.");
+}
