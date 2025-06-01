@@ -6,7 +6,7 @@ import Root from "./Root";
 import Coins from "./screens/Coins";
 import Coin from "./screens/Coin";
 import Price from "./screens/Price";
-import Chart from "./screens/Chart";
+import CryptoChart from "./screens/CryptoChart";
 
 
 const Router = createBrowserRouter([
@@ -29,7 +29,7 @@ const Router = createBrowserRouter([
                     },
                     {
                         path: "chart",
-                        element: <Chart />
+                        element: <CryptoChart />
                     }
                 ]
             },
