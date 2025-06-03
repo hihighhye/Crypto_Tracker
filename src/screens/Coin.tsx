@@ -43,7 +43,7 @@ const BackBtn = styled.span`
 `;
 
 const Overview = styled.div`
-    background-color: black;
+    background-color: ${props => props.theme.cardBgColor};
     color: ${props => props.theme.textColor};
     padding: 20px 25px;
     border-radius: 15px;
@@ -85,7 +85,7 @@ const Tab = styled.span<{isActive: boolean}>`
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 400;
-    background-color: black;
+    background-color: ${props => props.theme.cardBgColor};
     padding: 7px 0px;
     border-radius: 10px;
     color: ${props => props.isActive ? props.theme.accentColor : props.theme.textColor};

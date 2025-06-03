@@ -1,5 +1,8 @@
 import { Outlet } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
+import { darkTheme, lightTheme } from "./theme";
+import { ThemeProvider } from "styled-components";
+import { useState } from "react";
 
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/
@@ -68,10 +71,16 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function Root() {
+  const [isDark, setIsDark] = useState(false);
+  const toggleDark = () => setIsDark(current => !current);
+
   return (
     <>
-      <GlobalStyle />
-      <Outlet />
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <button onClick={toggleDark}>Toggle Mode</button>
+        <GlobalStyle />
+        <Outlet />
+      </ThemeProvider>
     </>
   );
 }
