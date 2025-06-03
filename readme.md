@@ -10,9 +10,11 @@
 - apexcharts@4.7.0
 - react-helmet@6.1.0
 - apex-grid@1.0.1
+- ag-grid-react@33.3.1
 
 > - `@tanstack/react-query` Official Docs: [https://tanstack.com/query/latest/docs/framework/react/quick-start](https://tanstack.com/query/latest/docs/framework/react/quick-start) <br>
-> - `APEXCHARTS` Official Docs: [https://apexcharts.com/docs/installation/](https://apexcharts.com/docs/installation/)
+> - `APEXCHARTS` Official Docs: [https://apexcharts.com/docs/installation/](https://apexcharts.com/docs/installation/) > `AG-Grid` Official Docs: [https://www.ag-grid.com/](https://www.ag-grid.com/)
+> - **Coinpaprika API**: [https://api.coinpaprika.com/](https://api.coinpaprika.com/)
 
 <br>
 
@@ -33,6 +35,8 @@ npm i react-helmet
 npm i --save-dev @types/react-helmet
 
 npm install apex-grid @lit-labs/react
+
+npm install ag-grid-react
 ```
 
 <br>
