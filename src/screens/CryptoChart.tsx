@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useOutletContext } from "react-router-dom";
-import { fetchCoinHistory } from "../api";
+import { fetchCoinHistory, IChartContext, IHistorical } from "../api";
 import ReactApexChart from "react-apexcharts";
 import styled from "styled-components";
 
@@ -9,28 +9,13 @@ const ChartWrapper = styled.div`
     margin-bottom: 50px;
 `;
 
-interface IChartContext {
-    coinId: string;
-}
-
-interface IHistorical {
-    close: string;
-    high: string;
-    low: string;
-    market_cap: number;
-    open: string;
-    time_close: number;
-    time_open: number;
-    volume: string;
-}
-
 interface ISeriesData {
     x: Date;
     y: number[];
 }
 
 function CryptoChart() {
-    const {coinId} = useOutletContext<IChartContext>();
+    const {coinId, tickersData} = useOutletContext<IChartContext>();
    
     const {isLoading, data: histData} = useQuery<IHistorical[]>(
         {
@@ -72,7 +57,7 @@ function CryptoChart() {
                             show: false
                         },
                         title: {
-                            text: coinId,
+                            text: tickersData.name,
                             margin: 10,
                             style:{
                                 fontSize: "28px",
