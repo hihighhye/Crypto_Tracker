@@ -9,8 +9,10 @@
 - @tanstack/react-query-devtools@5.79.0
 - apexcharts@4.7.0
 - react-helmet@6.1.0
+- apex-grid@1.0.1
 
-> `@tanstack/react-query` Official Docs: [https://tanstack.com/query/latest/docs/framework/react/quick-start](https://tanstack.com/query/latest/docs/framework/react/quick-start)
+> - `@tanstack/react-query` Official Docs: [https://tanstack.com/query/latest/docs/framework/react/quick-start](https://tanstack.com/query/latest/docs/framework/react/quick-start) <br>
+> - `APEXCHARTS` Official Docs: [https://apexcharts.com/docs/installation/](https://apexcharts.com/docs/installation/)
 
 <br>
 
@@ -24,11 +26,13 @@ npm i styled-components
 
 npm i react-router-dom
 npm i @tanstack/react-query
+
 npm install --save react-apexcharts apexcharts
 
 npm i react-helmet
 npm i --save-dev @types/react-helmet
 
+npm install apex-grid @lit-labs/react
 ```
 
 <br>

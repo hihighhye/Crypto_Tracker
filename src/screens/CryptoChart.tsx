@@ -1,7 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { useOutletContext } from "react-router-dom";
 import { fetchCoinHistory } from "../api";
-import Chart from "react-apexcharts";
+import ReactApexChart from "react-apexcharts";
+import styled from "styled-components";
+
+
+const ChartWrapper = styled.div`
+    margin-bottom: 50px;
+`;
 
 interface IChartContext {
     coinId: string;
@@ -18,77 +24,99 @@ interface IHistorical {
     volume: string;
 }
 
+interface ISeriesData {
+    x: Date;
+    y: number[];
+}
+
 function CryptoChart() {
     const {coinId} = useOutletContext<IChartContext>();
-    const {isLoading, data} = useQuery<IHistorical[]>(
+   
+    const {isLoading, data: histData} = useQuery<IHistorical[]>(
         {
             queryKey: ["ohlcv", "coinId"], 
             queryFn: () => fetchCoinHistory(coinId),
-            refetchInterval: 10000,
+            // refetchInterval: 10000,
         }
     );
-    console.log(data)
+
+    const seriesData:ISeriesData[] = histData?.map((value:IHistorical) => (
+                                    {
+                                        x: new Date(value.time_close * 1000),
+                                        y: [parseFloat(value.open), parseFloat(value.high), parseFloat(value.low), parseFloat(value.close)]
+                                    }
+                                )) as ISeriesData[]
+  
     return (
-        <div>
+        <ChartWrapper>
             {isLoading ? 
                 "Loading chart..." : (
-                <Chart 
-                    type="line"
+                <ReactApexChart
+                    type="candlestick"
                     series={[
-                        {
-                            name: "close price",
-                            data: data?.map(price => parseFloat(price.close)) as number[],
-                        },
+                        {data: seriesData}
                     ]}
-                    options={{
-                        theme: {
-                            mode: "dark"
-                        },
+                    options={{    
                         chart: {
-                            height: 300,
-                            width: 500,
+                            type: "candlestick",
+                            height: 350,
                             toolbar: {
-                                show: false
+                                show: false,
                             },
                             background: "transparent",
+                        },
+                        theme: {
+                            mode: "dark"
                         },
                         grid: {
                             show: false
                         },
-                        stroke: {
-                            curve: "smooth",
-                            width: 3,
-                        },
-                        yaxis: {
-                            show: false,
+                        title: {
+                            text: coinId,
+                            margin: 10,
+                            style:{
+                                fontSize: "28px",
+                                
+                            }
                         },
                         xaxis: {
-                            axisBorder: { show: false },
-                            axisTicks: { show: false },
-                            labels: { show: false },
-                            type: "datetime",
-                            categories: data?.map((price) => new Date(price.time_close * 1000).toDateString()),
+                            type: "datetime"
                         },
-                        fill: {
-                            type: "gradient",
-                            gradient: {
-                                gradientToColors: ["blue"],
-                                stops: [0, 100] 
+                        yaxis: {
+                            title: {
+                                text: "Unit: USD ($)",
+                            },
+                            tooltip: {
+                                enabled: true
+                            },
+                            decimalsInFloat: 0,
+                            labels: {
+                                formatter: (value) => `$${value.toLocaleString()}`
+                            },
+                            axisTicks: {
+                                show: true,
                             },
                         },
-                        colors: ["red"],
                         tooltip: {
-                            y: {
-                                formatter: (value) => `$${value.toLocaleString('en-US', {
-                                    minimumFractionDigits: 3,
-                                    maximumFractionDigits: 3
-                                })}`
-                            }
+                            custom: function({ seriesIndex, dataPointIndex, w }) {
+                                        const o = w.globals.seriesCandleO[seriesIndex][dataPointIndex];
+                                        const h = w.globals.seriesCandleH[seriesIndex][dataPointIndex];
+                                        const l = w.globals.seriesCandleL[seriesIndex][dataPointIndex];
+                                        const c = w.globals.seriesCandleC[seriesIndex][dataPointIndex];
+                                        return (
+                                        '<div class="apexcharts-tooltip-candlestick" style="padding: 8px; border-radius: 3px;">' +
+                                        '<div>Open: <span class="value">' + o.toLocaleString() + '</span></div>' +
+                                        '<div>High: <span class="value">' + h.toLocaleString() + '</span></div>' +
+                                        '<div>Low: <span classagg class="value">' + l.toLocaleString() + '</span></div>' +
+                                        '<div>Close: <span class="value">' + c.toLocaleString() + '</span></div>' +
+                                        '</div>'
+                                        );
+                                    }
                         }
                     }}
                 />
             )}
-        </div>
+        </ChartWrapper>
     );
 }
 

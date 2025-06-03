@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 
-
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/
     v5.0.1 | 20191019

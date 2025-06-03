@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation, useParams, useMatch, } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
@@ -14,20 +13,33 @@ const Container = styled.div`
 
 const Header = styled.header`
     height: 10vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin: 20px 0px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 `;
 
 const Title = styled.h1`
     font-size: 48px;
     color: ${props => props.theme.accentColor};
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 const Loader = styled.span`
     text-align: center;
     display: block;
+`;
+
+const BackBtn = styled.span`
+    color: ${props => props.theme.textColor};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 40px;
+    font-size: 20px;
 `;
 
 const Overview = styled.div`
@@ -37,7 +49,7 @@ const Overview = styled.div`
     border-radius: 15px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 `;
 
@@ -48,6 +60,7 @@ const OverviewItem = styled.div`
     flex-direction: column;
     text-align: center;
     font-size: 26px;
+    min-width: 150px;
     span:first-child {
         font-size: 12px;
         padding-bottom: 10px;
@@ -153,10 +166,9 @@ function Coin() {
         {
             queryKey: ["tickers", coinId], 
             queryFn: () => fetchCoinTickers(coinId ? coinId : ""),
-            refetchInterval: 5000,
+            // refetchInterval: 5000,
         }
     );
-
     /* 
     const [loading, setLoading] = useState(true);
     const [info, setInfo] = useState<InfoData>();
@@ -184,6 +196,7 @@ function Coin() {
                 </title>
             </Helmet>
             <Header>
+                <BackBtn><Link to="/">&larr; Back</Link></BackBtn>
                 <Title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</Title>    
             </Header>
             {loading 
@@ -197,15 +210,15 @@ function Coin() {
                         </OverviewItem>
                         <OverviewItem>
                             <span>SYMBOL:</span>
-                            <span>${infoData?.symbol}</span>
+                            <span>{infoData?.symbol}</span>
                         </OverviewItem>
                         <OverviewItem>
-                            <span>PRICE:</span>
+                            <span>PRICE (USD):</span>
                             <span>{tickersData ? 
                                     `$${parseFloat(tickersData.quotes.USD.price)
                                     .toLocaleString("en-US", {
-                                        minimumFractionDigits: 3,
-                                        maximumFractionDigits: 3
+                                        minimumFractionDigits: 2,
+                                        maximumFractionDigits: 2
                                     })}` : ""}</span>
                         </OverviewItem>
                     </Overview>
@@ -213,18 +226,18 @@ function Coin() {
                     <Overview>
                         <OverviewItem>
                             <span>TOTAL SUPPLY:</span>
-                            <span>${tickersData?.total_supply.toLocaleString()}</span>
+                            <span>{tickersData?.total_supply.toLocaleString()}</span>
                         </OverviewItem>
                         <OverviewItem>
                             <span>MAX SUPPLY:</span>
-                            <span>${tickersData?.max_supply.toLocaleString()}</span>
+                            <span>{tickersData?.max_supply.toLocaleString()}</span>
                         </OverviewItem>
                     </Overview>
                     <Tabs>
                         <Tab isActive={chartMatch !== null}><Link to="chart">Chart</Link></Tab>
                         <Tab isActive={priceMatch !== null}><Link to="price">Price</Link></Tab>
                     </Tabs>
-                    <Outlet context={{coinId: coinId}} />
+                    <Outlet context={{coinId: coinId, tickersData: tickersData}} />
                     </>
                 )
             }
