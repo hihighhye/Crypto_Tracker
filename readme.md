@@ -1,6 +1,6 @@
 # Crypto Tracker
 
-<video controls src="Crypto Tracker.mp4" title="Crypto Tracker"></video>
+<video controls src="./Crypto Tracker.mp4" title="Crypto Tracker"></video>
 
 ## Used Version
 
