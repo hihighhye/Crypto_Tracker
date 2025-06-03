@@ -16,7 +16,7 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 
 const GridWrapper = styled.div`
     height: 120px; // 580px;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 `;
 
 const GridTitle = styled.span`
