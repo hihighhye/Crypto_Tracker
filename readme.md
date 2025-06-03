@@ -1,5 +1,7 @@
 # Crypto Tracker
 
+<video controls src="Crypto Tracker.mp4" title="Crypto Tracker"></video>
+
 ## Used Version
 
 - react@19.1.0
