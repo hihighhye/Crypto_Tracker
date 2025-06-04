@@ -12,20 +12,13 @@ const Container = styled.div`
     margin: 0 auto;
 `;
 
-const Header = styled.header`
-    height: 10vh;
-    margin: 20px 0px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-`;
-
 const Title = styled.h1`
     font-size: 48px;
     color: ${props => props.theme.accentColor};
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 30px;
 `;
 
 const Loader = styled.span`
@@ -142,10 +135,7 @@ function Coin() {
                     {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
                 </title>
             </Helmet>
-            <Header>
-                <BackBtn><Link to="/">&larr; Back</Link></BackBtn>
-                <Title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</Title>    
-            </Header>
+            <Title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</Title>    
             {loading 
                 ? <Loader>Loading...</Loader> 
                 : (

@@ -18,7 +18,8 @@
 - recoil@0.7.7 -- _Doesn't support react@19..._
 
 > - `@tanstack/react-query` Official Docs: [https://tanstack.com/query/latest/docs/framework/react/quick-start](https://tanstack.com/query/latest/docs/framework/react/quick-start) <br>
-> - `APEXCHARTS` Official Docs: [https://apexcharts.com/docs/installation/](https://apexcharts.com/docs/installation/) > `AG-Grid` Official Docs: [https://www.ag-grid.com/](https://www.ag-grid.com/)
+> - `APEXCHARTS` Official Docs: [https://apexcharts.com/docs/installation/](https://apexcharts.com/docs/installation/) <br>
+> - `AG-Grid` Official Docs: [https://www.ag-grid.com/](https://www.ag-grid.com/)
 > - **Coinpaprika API**: [https://api.coinpaprika.com/](https://api.coinpaprika.com/)
 
 <br>
