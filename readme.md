@@ -15,7 +15,7 @@
 - react-helmet@6.1.0
 - apex-grid@1.0.1
 - ag-grid-react@33.3.1
--
+- react-redux@9.2.0
 
 > - `@tanstack/react-query` Official Docs: [https://tanstack.com/query/latest/docs/framework/react/quick-start](https://tanstack.com/query/latest/docs/framework/react/quick-start) <br>
 > - `APEXCHARTS` Official Docs: [https://apexcharts.com/docs/installation/](https://apexcharts.com/docs/installation/) > `AG-Grid` Official Docs: [https://www.ag-grid.com/](https://www.ag-grid.com/)
@@ -43,7 +43,6 @@ npm install apex-grid @lit-labs/react
 
 npm install ag-grid-react
 
-npm install recoil
 npm install @reduxjs/toolkit react-redux
 npm install @types/react-redux
 ```
