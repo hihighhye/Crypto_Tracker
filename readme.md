@@ -15,6 +15,7 @@
 - react-helmet@6.1.0
 - apex-grid@1.0.1
 - ag-grid-react@33.3.1
+- recoil@0.7.7 -- _Doesn't support react@19..._
 
 > - `@tanstack/react-query` Official Docs: [https://tanstack.com/query/latest/docs/framework/react/quick-start](https://tanstack.com/query/latest/docs/framework/react/quick-start) <br>
 > - `APEXCHARTS` Official Docs: [https://apexcharts.com/docs/installation/](https://apexcharts.com/docs/installation/) > `AG-Grid` Official Docs: [https://www.ag-grid.com/](https://www.ag-grid.com/)
