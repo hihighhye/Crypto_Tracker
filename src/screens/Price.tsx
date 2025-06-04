@@ -11,17 +11,20 @@ import type {
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'; 
 import { useMemo } from "react";
 import styled from "styled-components";
+import { useAppSelector } from "../app/hooks";
+import { isWhiteSpaceLike } from "typescript";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const GridWrapper = styled.div`
     height: 120px; // 580px;
-    margin-bottom: 100px;
+    margin-bottom: 150px;
 `;
 
-const GridTitle = styled.span`
+const GridTitle = styled.div`
     font-size: 24px;
     font-weight: bold;
+    padding-top: 10px;
 `
 
 const Caption = styled.div`
@@ -52,6 +55,7 @@ const assignTSColor = (params:ValueGetterParams) => {
 }
 
 function Price() {
+    const isDark = useAppSelector(state => state.theme.isDark);
     const {coinId, tickersData} = useOutletContext<IChartContext>();
     
     const defaultColDef = useMemo<ColDef>(():ColDef => {
@@ -117,6 +121,7 @@ function Price() {
         return ([
             {
                 headerName: "Date",
+                headerStyle: { color: "white", backgroundColor: "#9c88ff" },
                 valueGetter: (p: ValueGetterParams) => p.data.last_updated,
                 valueFormatter: (e: ValueFormatterParams) => (e.value.split("T")[0]),
                 filter: true,

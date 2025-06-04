@@ -3,21 +3,11 @@ import { Link, Outlet, useLocation, useParams, useMatch, useOutletContext, } fro
 import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinTickers, InfoData, PriceData } from "../api";
 import { Helmet } from "react-helmet";
-import { useContext } from "react";
-
 
 const Container = styled.div`
     padding: 0px 20px;
     max-width: 600px;
     margin: 0 auto;
-`;
-
-const Header = styled.header`
-    height: 10vh;
-    margin: 20px 0px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
 `;
 
 const Title = styled.h1`
@@ -26,21 +16,12 @@ const Title = styled.h1`
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 30px;
 `;
 
 const Loader = styled.span`
     text-align: center;
     display: block;
-`;
-
-const BackBtn = styled.span`
-    color: ${props => props.theme.textColor};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80px;
-    height: 40px;
-    font-size: 20px;
 `;
 
 const Overview = styled.div`
@@ -142,10 +123,7 @@ function Coin() {
                     {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
                 </title>
             </Helmet>
-            <Header>
-                <BackBtn><Link to="/">&larr; Back</Link></BackBtn>
-                <Title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</Title>    
-            </Header>
+            <Title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</Title>    
             {loading 
                 ? <Loader>Loading...</Loader> 
                 : (

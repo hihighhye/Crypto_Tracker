@@ -62,7 +62,6 @@ function CryptoChart() {
                             margin: 10,
                             style:{
                                 fontSize: "28px",
-                                
                             }
                         },
                         xaxis: {

@@ -1,6 +1,6 @@
 # Crypto Tracker
 
-<video controls src="./Crypto Tracker.mp4" title="Crypto Tracker" width=400></video>
+<video controls src="readme/Crypto_Tracker_Final.mp4" title="Crypto Tracker" width=400></video>
 
 <br>
 
@@ -17,9 +17,10 @@
 - ag-grid-react@33.3.1
 - react-redux@9.2.0
 
+> - **Coinpaprika API**: [https://api.coinpaprika.com/](https://api.coinpaprika.com/)
 > - `@tanstack/react-query` Official Docs: [https://tanstack.com/query/latest/docs/framework/react/quick-start](https://tanstack.com/query/latest/docs/framework/react/quick-start) <br>
 > - `APEXCHARTS` Official Docs: [https://apexcharts.com/docs/installation/](https://apexcharts.com/docs/installation/) > `AG-Grid` Official Docs: [https://www.ag-grid.com/](https://www.ag-grid.com/)
-> - **Coinpaprika API**: [https://api.coinpaprika.com/](https://api.coinpaprika.com/)
+> - `Redux` Official Docs: [https://redux.js.org/tutorials/quick-start](https://redux.js.org/tutorials/quick-start)
 
 <br>
 
