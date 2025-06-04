@@ -1,12 +1,8 @@
-interface IHeaderProps {
-    toggleDark: () => void;
-}
 
-function Header({toggleDark}:IHeaderProps) {
-
+function Header() {
     return (
         <header>
-            <button onClick={toggleDark}>Toggle Mode</button>
+            <button>Toggle Mode</button>
         </header>
     )
 }

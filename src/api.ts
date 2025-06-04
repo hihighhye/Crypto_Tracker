@@ -101,5 +101,4 @@ export interface IHistorical {
 export interface IChartContext {
     coinId: string;
     tickersData: PriceData;
-    isDark: boolean;
 }

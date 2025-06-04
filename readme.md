@@ -41,6 +41,8 @@ npm i --save-dev @types/react-helmet
 npm install apex-grid @lit-labs/react
 
 npm install ag-grid-react
+
+npm install recoil
 ```
 
 <br>

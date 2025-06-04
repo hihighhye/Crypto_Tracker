@@ -100,7 +100,6 @@ const Tab = styled.span<{isActive: boolean}>`
 function Coin() {
     const {coinId} = useParams();
     const {state} = useLocation();
-    const {isDark} = useOutletContext<{isDark:boolean}>();
     const priceMatch = useMatch("/:coinId/price");
     const chartMatch = useMatch("/:coinId/chart");
 
@@ -185,7 +184,7 @@ function Coin() {
                         <Tab isActive={chartMatch !== null}><Link to="chart">Chart</Link></Tab>
                         <Tab isActive={priceMatch !== null}><Link to="price">Price</Link></Tab>
                     </Tabs>
-                    <Outlet context={{coinId, tickersData, isDark}} />
+                    <Outlet context={{coinId, tickersData}} />
                     </>
                 )
             }
