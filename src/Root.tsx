@@ -3,8 +3,8 @@ import { createGlobalStyle } from "styled-components";
 import { darkTheme, lightTheme } from "./theme";
 import { ThemeProvider } from "styled-components";
 import Header from "./components/Header";
-import { useRecoilValue } from "recoil";
-import { isDarkAtom } from "./atoms";
+import { useAppSelector } from "./app/hooks";
+
 
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/
@@ -73,7 +73,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function Root() {
-  const isDark = useRecoilValue(isDarkAtom);
+  const isDark = useAppSelector(state => state.theme.isDark);
   return (
     <>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>

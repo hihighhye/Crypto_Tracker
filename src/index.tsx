@@ -4,19 +4,20 @@ import Router from './Router';
 import { RouterProvider } from 'react-router-dom';
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { RecoilRoot } from 'recoil';
+import { store } from './app/store';
+import { Provider } from 'react-redux';
 
 const queryClient = new QueryClient()
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   // <React.StrictMode>
-  <RecoilRoot>
+  <Provider store={store}>
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={Router} />
       <ReactQueryDevtools initialIsOpen={true} />
     </QueryClientProvider>
-  </RecoilRoot>
+  </Provider>
   // </React.StrictMode>
 );
 

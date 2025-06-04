@@ -3,8 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import { fetchCoinHistory, IChartContext, IHistorical } from "../api";
 import ReactApexChart from "react-apexcharts";
 import styled from "styled-components";
-import { useRecoilValue } from "recoil";
-import { isDarkAtom } from "../atoms";
+import { useAppSelector } from "../app/hooks";
 
 
 const ChartWrapper = styled.div`
@@ -17,7 +16,7 @@ interface ISeriesData {
 }
 
 function CryptoChart() {
-    const isDark = useRecoilValue(isDarkAtom);
+    const isDark = useAppSelector(state => state.theme.isDark);
     const {coinId, tickersData} = useOutletContext<IChartContext>();
     const {isLoading, data: histData} = useQuery<IHistorical[]>(
         {

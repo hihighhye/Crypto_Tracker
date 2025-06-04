@@ -1,8 +1,12 @@
+import { useDispatch } from "react-redux";
+import { toggleMode } from "../themeSlice";
 
 function Header() {
+    const dispatch = useDispatch()
+
     return (
         <header>
-            <button>Toggle Mode</button>
+            <button onClick={() => dispatch(toggleMode())}>Toggle Mode</button>
         </header>
     )
 }
