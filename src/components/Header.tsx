@@ -1,16 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
+interface IHeaderProps {
+    toggleDark: () => void;
+}
 
-function Header() {
-    const navigate = useNavigate()
-    const onAboutClick = () => {
-        navigate("/about");
-    }
+function Header({toggleDark}:IHeaderProps) {
+
     return (
         <header>
-            <ul>
-                <li><Link to={"/"}>Home</Link></li>
-                <li><button onClick={onAboutClick}>About</button></li>
-            </ul>
+            <button onClick={toggleDark}>Toggle Mode</button>
         </header>
     )
 }

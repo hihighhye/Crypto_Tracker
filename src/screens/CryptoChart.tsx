@@ -15,8 +15,7 @@ interface ISeriesData {
 }
 
 function CryptoChart() {
-    const {coinId, tickersData} = useOutletContext<IChartContext>();
-   
+    const {coinId, tickersData, isDark} = useOutletContext<IChartContext>();
     const {isLoading, data: histData} = useQuery<IHistorical[]>(
         {
             queryKey: ["ohlcv", "coinId"], 
@@ -51,7 +50,7 @@ function CryptoChart() {
                             background: "transparent",
                         },
                         theme: {
-                            mode: "dark"
+                            mode: isDark ? "dark" : "light",
                         },
                         grid: {
                             show: false

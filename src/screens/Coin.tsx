@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { Link, Outlet, useLocation, useParams, useMatch, } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams, useMatch, useOutletContext, } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinTickers, InfoData, PriceData } from "../api";
 import { Helmet } from "react-helmet";
+import { useContext } from "react";
 
 
 const Container = styled.div`
@@ -46,6 +47,7 @@ const Overview = styled.div`
     background-color: ${props => props.theme.cardBgColor};
     color: ${props => props.theme.textColor};
     padding: 20px 25px;
+    border: solid 1px white;
     border-radius: 15px;
     display: flex;
     flex-direction: row;
@@ -87,6 +89,7 @@ const Tab = styled.span<{isActive: boolean}>`
     font-weight: 400;
     background-color: ${props => props.theme.cardBgColor};
     padding: 7px 0px;
+    border: solid 1px white;
     border-radius: 10px;
     color: ${props => props.isActive ? props.theme.accentColor : props.theme.textColor};
     a {
@@ -97,6 +100,7 @@ const Tab = styled.span<{isActive: boolean}>`
 function Coin() {
     const {coinId} = useParams();
     const {state} = useLocation();
+    const {isDark} = useOutletContext<{isDark:boolean}>();
     const priceMatch = useMatch("/:coinId/price");
     const chartMatch = useMatch("/:coinId/chart");
 
@@ -131,7 +135,7 @@ function Coin() {
         })();
     }, [coinId]);
     */
-   const loading = infoLoading || tickersLoading;
+    const loading = infoLoading || tickersLoading;
     return (
         <Container>
             <Helmet>
@@ -181,7 +185,7 @@ function Coin() {
                         <Tab isActive={chartMatch !== null}><Link to="chart">Chart</Link></Tab>
                         <Tab isActive={priceMatch !== null}><Link to="price">Price</Link></Tab>
                     </Tabs>
-                    <Outlet context={{coinId: coinId, tickersData: tickersData}} />
+                    <Outlet context={{coinId, tickersData, isDark}} />
                     </>
                 )
             }

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoins, ICoin } from "../api";
 import { Helmet } from "react-helmet";
@@ -58,6 +58,7 @@ const Img = styled.img`
 
 function Coins() {
     const {isLoading, data} = useQuery<ICoin[]>({queryKey: ["allCoins"], queryFn: fetchCoins});
+    
     /*
     const [coins, setCoins] = useState<ICoin[]>([]);
     const [loading, setLoading] = useState(true);

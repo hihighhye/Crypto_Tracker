@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 import { darkTheme, lightTheme } from "./theme";
 import { ThemeProvider } from "styled-components";
 import { useState } from "react";
+import Header from "./components/Header";
 
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/
@@ -77,9 +78,9 @@ function Root() {
   return (
     <>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-        <button onClick={toggleDark}>Toggle Mode</button>
         <GlobalStyle />
-        <Outlet />
+        <Header toggleDark={toggleDark} />
+        <Outlet context={{isDark}} />
       </ThemeProvider>
     </>
   );
