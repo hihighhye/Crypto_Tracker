@@ -19,8 +19,9 @@
 
 > - **Coinpaprika API**: [https://api.coinpaprika.com/](https://api.coinpaprika.com/)
 > - `@tanstack/react-query` Official Docs: [https://tanstack.com/query/latest/docs/framework/react/quick-start](https://tanstack.com/query/latest/docs/framework/react/quick-start) <br>
-> - `APEXCHARTS` Official Docs: [https://apexcharts.com/docs/installation/](https://apexcharts.com/docs/installation/) > `AG-Grid` Official Docs: [https://www.ag-grid.com/](https://www.ag-grid.com/)
-> - `Redux` Official Docs: [https://redux.js.org/tutorials/quick-start](https://redux.js.org/tutorials/quick-start)
+> - **APEXCHARTS** Official Docs: [https://apexcharts.com/docs/installation/](https://apexcharts.com/docs/installation/) <br>
+> - **AG-Grid** Official Docs: [https://www.ag-grid.com/](https://www.ag-grid.com/)
+> - **Redux** Official Docs: [https://redux.js.org/tutorials/quick-start](https://redux.js.org/tutorials/quick-start)
 
 <br>
 
