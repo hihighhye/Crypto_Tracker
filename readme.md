@@ -16,6 +16,7 @@
 - apex-grid@1.0.1
 - ag-grid-react@33.3.1
 - react-redux@9.2.0
+- gh-pages@6.3.0
 
 > - **Coinpaprika API**: [https://api.coinpaprika.com/](https://api.coinpaprika.com/)
 > - `@tanstack/react-query` Official Docs: [https://tanstack.com/query/latest/docs/framework/react/quick-start](https://tanstack.com/query/latest/docs/framework/react/quick-start) <br>
@@ -47,6 +48,8 @@ npm install ag-grid-react
 
 npm install @reduxjs/toolkit react-redux
 npm install @types/react-redux
+
+npm i gh-pages
 ```
 
 <br>
