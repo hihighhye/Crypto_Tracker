@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, createHashRouter } from "react-router-dom";
 
 import NotFound from "./screens/NotFound";
 import ErrorComponent from "./components/ErrorComponent";
@@ -9,13 +9,13 @@ import Price from "./screens/Price";
 import CryptoChart from "./screens/CryptoChart";
 
 
-const Router = createBrowserRouter([
+const Router = createHashRouter([
     {
         path: "/",
         element: <Root />,
         children: [
             {
-                path: "Crypto_Tracker/",
+                path: "",
                 element: <Coins />,
                 errorElement: <ErrorComponent />
             },

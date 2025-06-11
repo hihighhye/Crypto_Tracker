@@ -62,7 +62,7 @@ function Header() {
 
     return (
         <Navigator>
-            {!homeMatch ? (<BackBtn><Link to="Crypto_Tracker/">&larr; Back</Link></BackBtn>) : null}
+            {!homeMatch ? (<BackBtn><Link to="/">&larr; Back</Link></BackBtn>) : null}
             {isDark ? (
                 <ToggleBtn onClick={() => dispatch(toggleMode())}>
                     <span>Light Mode</span><RightCircleDeco />
