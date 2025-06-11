@@ -84,6 +84,8 @@ function Coin() {
     const priceMatch = useMatch("/:coinId/price");
     const chartMatch = useMatch("/:coinId/chart");
 
+    console.log(coinId);
+
     const {isLoading: infoLoading, data: infoData} = useQuery<InfoData>(
         {
             queryKey: ["info", coinId], 

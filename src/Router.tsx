@@ -15,7 +15,7 @@ const Router = createBrowserRouter([
         element: <Root />,
         children: [
             {
-                path: "",
+                path: "Crypto_Tracker/",
                 element: <Coins />,
                 errorElement: <ErrorComponent />
             },
